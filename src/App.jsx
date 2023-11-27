@@ -41,7 +41,7 @@ function App() {
       targets.length > 0 &&
       targets.filter((t) => t.color === "green").length === 0
     ) {
-      alert("You win!");
+      alert("You win!!");
       generateTargets();
       setRemainingLives(5);
     }
