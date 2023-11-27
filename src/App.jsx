@@ -35,6 +35,18 @@ function App() {
     }
   }, [remainingLives]);
 
+  useEffect(() => {
+    if (
+      targets.length < NUMBER_OF_TARGETS &&
+      targets.length > 0 &&
+      targets.filter((t) => t.color === "green").length === 0
+    ) {
+      alert("You win!");
+      generateTargets();
+      setRemainingLives(5);
+    }
+  }, [targets.length]);
+
   const generateTargets = () => {
     const _targets = [];
     for (let i = 0; i < NUMBER_OF_TARGETS; i++) {
