@@ -1,15 +1,19 @@
 import "aframe";
 import { Entity } from "aframe-react";
 import React from "react";
-function Target() {
+
+function Target({ target, onClick }) {
   const handleClick = () => {
-    console.log("click");
+    onClick(target);
   };
   return (
     <Entity
-      geometry={{ primitive: "box" }}
-      material={{ color: "red" }}
-      position={{ x: 0, y: 0, z: -5 }}
+      width="0.5"
+      height="0.5"
+      depth="0.5"
+      primitive="a-box"
+      color={target.color}
+      position={target.position}
       events={{
         click: handleClick,
       }}
