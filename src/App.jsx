@@ -50,12 +50,17 @@ function App() {
   const generateTargets = () => {
     const _targets = [];
     for (let i = 0; i < NUMBER_OF_TARGETS; i++) {
+      const x = Math.random() * 10 - 5;
+      const y = Math.random() * 10 - 5;
+      let z = Math.random() * 10 - 5;
+      if (z < 1 && z > -1) z = 1; // Make sure targets are not too close to the camera
+
       const newTarget = {
         id: i,
         position: {
-          x: Math.random() * 10 - 5,
-          y: Math.random() * 10 - 5,
-          z: Math.random() * 10 - 5,
+          x,
+          y,
+          z,
         },
         color: COLORS[Math.floor(Math.random() * COLORS.length)],
       };
@@ -90,8 +95,14 @@ function App() {
   return (
     <Scene>
       <a-assets>
-        <img id="bg" src="/assets/bg.jpg" alt="sky" />
+        <img
+          id="sky-bg"
+          crossOrigin="anonymous"
+          src="https://jaseps.com/velocity/assets/sky2.jpg"
+          alt="sky"
+        />
       </a-assets>
+      <Entity primitive="a-sky" src="#sky-bg" />
       <Entity primitive="a-camera">
         <Entity
           primitive="a-cursor"
